@@ -7,7 +7,6 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/kaybaai?style=social)](https://twitter.com/kaybaai)
 [![PyPI version](https://badge.fury.io/py/ace-framework.svg)](https://badge.fury.io/py/ace-framework)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Dependencies](https://img.shields.io/badge/dependencies-pip--tools-green.svg)](https://pip-tools.readthedocs.io/)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 **AI agents that get smarter with every task 🧠**
