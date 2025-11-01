@@ -13,7 +13,7 @@ Comprehensive setup and configuration guide for ACE Framework.
 ## Requirements
 
 ### System Requirements
-- Python 3.9 or higher
+- Python 3.11 or higher
 - pip (Python package manager)
 - 4GB RAM minimum (8GB recommended for local models)
 - Internet connection for API-based models

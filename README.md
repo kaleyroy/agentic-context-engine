@@ -73,7 +73,8 @@ training_samples = [
 ]
 
 # 4. Train the agent (it learns from these examples)
-adapter = OfflineAdapter(generator, reflector, curator, playbook=playbook)
+adapter = OfflineAdapter(generator=generator, reflector=reflector,
+                        curator=curator, playbook=playbook)
 environment = SimpleEnvironment()
 results = adapter.run(training_samples, environment, epochs=1)
 

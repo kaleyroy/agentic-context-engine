@@ -735,14 +735,19 @@ class PromptManager:
             "2.0": GENERATOR_V2_PROMPT,
             "2.0-math": GENERATOR_MATH_PROMPT,
             "2.0-code": GENERATOR_CODE_PROMPT,
+            "2.1": "ace.prompts_v2_1.GENERATOR_V2_1_PROMPT",
+            "2.1-math": "ace.prompts_v2_1.GENERATOR_MATH_V2_1_PROMPT",
+            "2.1-code": "ace.prompts_v2_1.GENERATOR_CODE_V2_1_PROMPT",
         },
         "reflector": {
             "1.0": "ace.prompts.REFLECTOR_PROMPT",
             "2.0": REFLECTOR_V2_PROMPT,
+            "2.1": "ace.prompts_v2_1.REFLECTOR_V2_1_PROMPT",
         },
         "curator": {
             "1.0": "ace.prompts.CURATOR_PROMPT",
             "2.0": CURATOR_V2_PROMPT,
+            "2.1": "ace.prompts_v2_1.CURATOR_V2_1_PROMPT",
         },
     }
 
@@ -778,10 +783,14 @@ class PromptManager:
 
         prompt = self.PROMPTS["generator"].get(prompt_key)
         if isinstance(prompt, str) and prompt.startswith("ace."):
-            # Handle v1 prompt references
-            from ace import prompts
-
-            prompt = getattr(prompts, prompt.split(".")[-1])
+            # Handle v1 and v2.1 prompt references
+            module_parts = prompt.split(".")
+            if len(module_parts) > 2 and module_parts[1] == "prompts_v2_1":
+                from ace import prompts_v2_1
+                prompt = getattr(prompts_v2_1, module_parts[-1])
+            else:
+                from ace import prompts
+                prompt = getattr(prompts, prompt.split(".")[-1])
 
         # Track usage
         self._track_usage(f"generator-{prompt_key}")
@@ -800,9 +809,14 @@ class PromptManager:
         prompt = self.PROMPTS["reflector"].get(version)
 
         if isinstance(prompt, str) and prompt.startswith("ace."):
-            from ace import prompts
-
-            prompt = getattr(prompts, prompt.split(".")[-1])
+            # Handle v1 and v2.1 prompt references
+            module_parts = prompt.split(".")
+            if len(module_parts) > 2 and module_parts[1] == "prompts_v2_1":
+                from ace import prompts_v2_1
+                prompt = getattr(prompts_v2_1, module_parts[-1])
+            else:
+                from ace import prompts
+                prompt = getattr(prompts, prompt.split(".")[-1])
 
         self._track_usage(f"reflector-{version}")
         return prompt
@@ -813,9 +827,14 @@ class PromptManager:
         prompt = self.PROMPTS["curator"].get(version)
 
         if isinstance(prompt, str) and prompt.startswith("ace."):
-            from ace import prompts
-
-            prompt = getattr(prompts, prompt.split(".")[-1])
+            # Handle v1 and v2.1 prompt references
+            module_parts = prompt.split(".")
+            if len(module_parts) > 2 and module_parts[1] == "prompts_v2_1":
+                from ace import prompts_v2_1
+                prompt = getattr(prompts_v2_1, module_parts[-1])
+            else:
+                from ace import prompts
+                prompt = getattr(prompts, prompt.split(".")[-1])
 
         self._track_usage(f"curator-{version}")
         return prompt
