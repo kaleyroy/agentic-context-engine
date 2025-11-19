@@ -405,14 +405,22 @@ class ACELangChain:
         Returns:
             String representation
         """
+        # String - return as is
         if isinstance(result, str):
             return result
+
+        # LangChain messages (AIMessage, etc.) have .content attribute
+        if hasattr(result, "content"):
+            return str(result.content)
+
+        # Dict - try common output keys
         if isinstance(result, dict):
-            # Try common output keys
             for key in ["output", "answer", "result", "text"]:
                 if key in result:
                     return str(result[key])
             return str(result)
+
+        # Fallback to string representation
         return str(result)
 
     def save_playbook(self, path: str):
