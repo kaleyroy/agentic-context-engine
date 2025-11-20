@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **ACELiteLLM integration** - Simple conversational agent with automatic learning
 - **ACELangChain integration** - Wrap LangChain Runnables with ACE learning
+- **Custom integration pattern** - Wrap ANY agentic system with ACE learning
+  - Base utilities in `ace/integrations/base.py` with `wrap_playbook_context()` helper
+  - Complete working example in `examples/custom_integration_example.py`
+  - Integration Pattern: Inject playbook → Execute agent → Learn from results
 - **Integration exports** - Import ACEAgent, ACELiteLLM, ACELangChain from `ace` package root
 - **TOON compression for playbooks** - 16-62% token reduction vs markdown
 - **Citation-based tracking** - Strategies cited inline as `[section-00001]`, auto-extracted from reasoning
