@@ -1,0 +1,107 @@
+{
+  "bullets": {
+    "action_schema_compliance-00001": {
+      "id": "action_schema_compliance-00001",
+      "section": "action_schema_compliance",
+      "content": "Exclude scroll field from click actions",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:44:58.931592+00:00",
+      "updated_at": "2025-11-25T07:44:58.931836+00:00"
+    },
+    "navigation_strategy-00002": {
+      "id": "navigation_strategy-00002",
+      "section": "navigation_strategy",
+      "content": "Verify ranking data on homepage before navigating",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 1,
+      "created_at": "2025-11-25T07:44:58.931836+00:00",
+      "updated_at": "2025-11-25T07:46:20.050343+00:00"
+    },
+    "data_location-00003": {
+      "id": "data_location-00003",
+      "section": "data_location",
+      "content": "Check secondary pages for time-based rankings",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:44:58.931836+00:00",
+      "updated_at": "2025-11-25T07:44:58.931836+00:00"
+    },
+    "action_schema_compliance-00004": {
+      "id": "action_schema_compliance-00004",
+      "section": "action_schema_compliance",
+      "content": "Use 'index' not 'element_index' in click actions",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:46:20.050343+00:00",
+      "updated_at": "2025-11-25T07:46:20.050343+00:00"
+    },
+    "data_location-00005": {
+      "id": "data_location-00005",
+      "section": "data_location",
+      "content": "48-hour rankings are on Cnblogs.com homepage",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:46:20.050343+00:00",
+      "updated_at": "2025-11-25T07:46:20.050343+00:00"
+    },
+    "data_extraction-00006": {
+      "id": "data_extraction-00006",
+      "section": "data_extraction",
+      "content": "Use element indices to map ranked list items",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:48:10.719206+00:00",
+      "updated_at": "2025-11-25T07:48:10.719206+00:00"
+    },
+    "error_handling-00007": {
+      "id": "error_handling-00007",
+      "section": "error_handling",
+      "content": "Continue execution despite schema validation errors",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:48:10.719206+00:00",
+      "updated_at": "2025-11-25T07:48:10.719206+00:00"
+    },
+    "action_validation-00008": {
+      "id": "action_validation-00008",
+      "section": "action_validation",
+      "content": "Click target link to confirm article selection",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T07:48:10.719996+00:00",
+      "updated_at": "2025-11-25T07:48:10.719996+00:00"
+    }
+  },
+  "sections": {
+    "action_schema_compliance": [
+      "action_schema_compliance-00001",
+      "action_schema_compliance-00004"
+    ],
+    "navigation_strategy": [
+      "navigation_strategy-00002"
+    ],
+    "data_location": [
+      "data_location-00003",
+      "data_location-00005"
+    ],
+    "data_extraction": [
+      "data_extraction-00006"
+    ],
+    "error_handling": [
+      "error_handling-00007"
+    ],
+    "action_validation": [
+      "action_validation-00008"
+    ]
+  },
+  "next_id": 8
+}

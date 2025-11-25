@@ -1,0 +1,31 @@
+{
+  "bullets": {
+    "computation_rules-00001": {
+      "id": "computation_rules-00001",
+      "section": "computation_rules",
+      "content": "Solve elementary arithmetic directly without playbook lookup",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T05:59:09.465087+00:00",
+      "updated_at": "2025-11-25T05:59:09.465087+00:00"
+    },
+    "computation_rules-00002": {
+      "id": "computation_rules-00002",
+      "section": "computation_rules",
+      "content": "Compute small integer addition natively (e.g., 2+2=4)",
+      "helpful": 3,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-25T05:59:09.465087+00:00",
+      "updated_at": "2025-11-25T05:59:41.416235+00:00"
+    }
+  },
+  "sections": {
+    "computation_rules": [
+      "computation_rules-00001",
+      "computation_rules-00002"
+    ]
+  },
+  "next_id": 2
+}

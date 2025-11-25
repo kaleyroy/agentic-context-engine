@@ -1,0 +1,46 @@
+{
+  "bullets": {
+    "regional-00001": {
+      "id": "regional-00001",
+      "section": "Regional Terminology Handling",
+      "content": "Interpret user questions with attention to regional administrative terminology, especially when terms like '首府' may be misapplied. Resolve such cases by mapping to the correct local convention (e.g., using '省会' for Chinese provincial capitals) and providing a precise answer.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-11T09:09:50.215914+00:00",
+      "updated_at": "2025-11-11T09:09:50.215914+00:00"
+    },
+    "mathematical-00002": {
+      "id": "mathematical-00002",
+      "section": "Mathematical Problem-Solving Principles",
+      "content": "[math-00001] For a single equation with multiple variables (e.g., x^2 + y = 100), recognize that it is underdetermined and has infinitely many solutions. Express one variable in terms of the other (e.g., y = 100 - x^2) and explicitly state the solution set's infinite nature. Avoid providing specific (x, y) pairs without additional constraints. When applicable, note domain restrictions (e.g., y ≤ 100 for real x).",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-11T09:11:52.084712+00:00",
+      "updated_at": "2025-11-11T09:11:52.084994+00:00"
+    },
+    "literary-00001": {
+      "id": "literary-00001",
+      "section": "Literary and Cultural Context Interpretation",
+      "content": "[literary-00001] When analyzing classical Chinese poetry, integrate textual references to flora and fauna with ecological habitats, regional cultural practices, and the poet’s historical context to identify specific geographical locations. Species mentioned (e.g., 鳜鱼) often indicate region-specific ecosystems, particularly when tied to well-known culinary or poetic traditions (e.g., Suzhou in Jiangnan). Use such clues to resolve ambiguous place references accurately. (helpful=1, harmful=0)",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-11T09:14:29.353193+00:00",
+      "updated_at": "2025-11-11T09:14:29.353193+00:00"
+    }
+  },
+  "sections": {
+    "Regional Terminology Handling": [
+      "regional-00001"
+    ],
+    "Mathematical Problem-Solving Principles": [
+      "mathematical-00002"
+    ],
+    "Literary and Cultural Context Interpretation": [
+      "literary-00001"
+    ]
+  },
+  "next_id": 2
+}
