@@ -12,7 +12,13 @@ from pydantic import BaseModel, ConfigDict, Field
 from .delta import DeltaBatch
 from .llm import LLMClient
 from .playbook import Playbook
-from .prompts import CURATOR_PROMPT, GENERATOR_PROMPT, REFLECTOR_PROMPT
+from .prompts_v2_1 import PromptManager
+
+# Use PromptManager to get v2.1 prompts with {current_date} filled in
+_prompt_manager = PromptManager(default_version="2.1")
+GENERATOR_PROMPT = _prompt_manager.get_generator_prompt()
+REFLECTOR_PROMPT = _prompt_manager.get_reflector_prompt()
+CURATOR_PROMPT = _prompt_manager.get_curator_prompt()
 
 if TYPE_CHECKING:
     from .deduplication import DeduplicationManager

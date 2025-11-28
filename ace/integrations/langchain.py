@@ -163,6 +163,8 @@ class ACELangChain:
         self.is_learning = is_learning
         self._async_learning = async_learning
         self._learning_tasks: List[asyncio.Task] = []
+        self._tasks_submitted_count: int = 0
+        self._tasks_completed_count: int = 0
         self.output_parser = output_parser or self._default_output_parser
 
         # Load or create playbook
@@ -270,7 +272,9 @@ class ACELangChain:
             if self.is_learning:
                 if self._async_learning:
                     task = asyncio.create_task(self._alearn_from_failure(input, str(e)))
+                    task.add_done_callback(self._on_task_done)
                     self._learning_tasks.append(task)
+                    self._tasks_submitted_count += 1
                 else:
                     await self._alearn_from_failure(input, str(e))
             raise
@@ -279,7 +283,9 @@ class ACELangChain:
         if self.is_learning:
             if self._async_learning:
                 task = asyncio.create_task(self._alearn(input, result))
+                task.add_done_callback(self._on_task_done)
                 self._learning_tasks.append(task)
+                self._tasks_submitted_count += 1
             else:
                 await self._alearn(input, result)
 
@@ -461,6 +467,10 @@ class ACELangChain:
         """
         await asyncio.to_thread(self._learn_from_failure, original_input, error_msg)
 
+    def _on_task_done(self, task: asyncio.Task) -> None:
+        """Callback when a learning task completes (success or failure)."""
+        self._tasks_completed_count += 1
+
     async def wait_for_learning(self, timeout: Optional[float] = None) -> bool:
         """
         Wait for all background learning tasks to complete.
@@ -506,7 +516,7 @@ class ACELangChain:
 
         Returns:
             Dictionary with learning progress info:
-            - tasks_submitted: Total tasks created
+            - tasks_submitted: Total tasks ever created
             - pending: Number of tasks still running
             - completed: Number of tasks finished
             - async_learning: Whether async mode is enabled
@@ -515,12 +525,11 @@ class ACELangChain:
             stats = ace_chain.learning_stats
             print(f"Pending: {stats['pending']}")
         """
-        pending = [t for t in self._learning_tasks if not t.done()]
-        completed = len(self._learning_tasks) - len(pending)
+        pending = len([t for t in self._learning_tasks if not t.done()])
         return {
-            "tasks_submitted": len(self._learning_tasks),
-            "pending": len(pending),
-            "completed": completed,
+            "tasks_submitted": self._tasks_submitted_count,
+            "pending": pending,
+            "completed": self._tasks_completed_count,
             "async_learning": self._async_learning,
         }
 
