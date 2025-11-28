@@ -1,0 +1,68 @@
+{
+  "bullets": {
+    "arithmetic_execution-00001": {
+      "id": "arithmetic_execution-00001",
+      "section": "arithmetic_execution",
+      "content": "Use add() function for integer addition",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:25:59.822107+00:00",
+      "updated_at": "2025-11-28T02:25:59.822107+00:00"
+    },
+    "arithmetic_execution-00002": {
+      "id": "arithmetic_execution-00002",
+      "section": "arithmetic_execution",
+      "content": "Break addition into tens and units components",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:25:59.822107+00:00",
+      "updated_at": "2025-11-28T02:25:59.822107+00:00"
+    },
+    "output_structuring-00003": {
+      "id": "output_structuring-00003",
+      "section": "output_structuring",
+      "content": "Label steps explicitly in reasoning outputs",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:25:59.822107+00:00",
+      "updated_at": "2025-11-28T02:26:54.865353+00:00"
+    },
+    "arithmetic_execution-00004": {
+      "id": "arithmetic_execution-00004",
+      "section": "arithmetic_execution",
+      "content": "Use multiply(a, b) for integer multiplication",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:26:27.281924+00:00",
+      "updated_at": "2025-11-28T02:26:27.281924+00:00"
+    },
+    "string_operations-00005": {
+      "id": "string_operations-00005",
+      "section": "string_operations",
+      "content": "Use get_word_length() for word character count",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:26:54.865353+00:00",
+      "updated_at": "2025-11-28T02:26:54.865353+00:00"
+    }
+  },
+  "sections": {
+    "arithmetic_execution": [
+      "arithmetic_execution-00001",
+      "arithmetic_execution-00002",
+      "arithmetic_execution-00004"
+    ],
+    "output_structuring": [
+      "output_structuring-00003"
+    ],
+    "string_operations": [
+      "string_operations-00005"
+    ]
+  },
+  "next_id": 5
+}

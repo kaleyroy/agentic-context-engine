@@ -188,8 +188,59 @@ class ACELangChain:
         enhanced_input = self._inject_context(input)
 
         # Step 2: Execute runnable
+        intermediate_state = ""
         try:
-            result = self.runnable.invoke(enhanced_input, **kwargs)
+            from langgraph.graph.state import CompiledStateGraph
+
+            if isinstance(self.runnable, CompiledStateGraph):
+                result = self.runnable.invoke(
+                    {
+                        "messages": [
+                            {
+                                "role": "user",
+                                "content": (
+                                    enhanced_input["input"]
+                                    if "input" in enhanced_input
+                                    else enhanced_input
+                                ),
+                            }
+                        ]
+                    },
+                    **kwargs,
+                )
+                # return the last message
+                messages = result["messages"]
+                result = messages[-1]
+                user_msg_idx = len(messages) - 1
+                tool_calls, tool_results = None, {}
+                while True:
+                    current = messages[user_msg_idx]
+                    if current.type == "ai" and hasattr(current, "tool_calls") and len(current.tool_calls) > 0:
+                        tool_calls = current.tool_calls
+                    if current.type == "tool":
+                        tool_results[current.tool_call_id] = current.content
+
+                    if current.type == "human":
+                        break
+                    user_msg_idx -= 1
+
+        
+                # print(f"Last user message: {messages[user_msg_idx]}")
+                intermediate_messages = messages[user_msg_idx : len(messages) - 1]
+                logger.debug(f"Intermediate messages: {intermediate_messages}")
+                tool_descriptions = []
+                if tool_calls and len(tool_calls) > 0:
+                    for tool_call in tool_calls:
+                        tool_name = tool_call.get("name", "")
+                        tool_args = tool_call.get("args", {})
+                        tool_call_id = tool_call.get("id", "")
+                        tool_result = tool_results.get(tool_call_id, None)
+                        tool_descriptions.append(
+                            f"Use tool: {tool_name} with args: {tool_args}, result: {tool_result}"
+                        )
+                    intermediate_state = " | ".join(tool_descriptions)
+            else:
+                result = self.runnable.invoke(enhanced_input, **kwargs)
         except Exception as e:
             logger.error(f"Error executing runnable: {e}")
             # Learn from failure
@@ -199,7 +250,7 @@ class ACELangChain:
 
         # Step 3: Learn from result
         if self.is_learning:
-            self._learn(input, result)
+            self._learn(input, result,intermediate_state)
 
         return result
 
@@ -277,7 +328,7 @@ class ACELangChain:
         # Other types - return unchanged
         return input
 
-    def _learn(self, original_input: Any, result: Any):
+    def _learn(self, original_input: Any, result: Any, intermediate_state: str = ""):
         """
         Learn from successful execution.
 
@@ -303,9 +354,10 @@ class ACELangChain:
             else:
                 task = str(original_input)
 
+            extra_state = f"Intermediate state: {intermediate_state}" if intermediate_state else ""
             # Create adapter for Reflector interface
             generator_output = GeneratorOutput(
-                reasoning=f"Task: {task}\nOutput: {output_str}",
+                reasoning=f"Task: {task}\n {extra_state} \nOutput: {output_str}",
                 final_answer=output_str,
                 bullet_ids=[],  # LangChain runnables don't cite bullets
                 raw={"input": original_input, "output": result},

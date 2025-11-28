@@ -1,0 +1,70 @@
+{
+  "bullets": {
+    "arithmetic_operations-00001": {
+      "id": "arithmetic_operations-00001",
+      "section": "arithmetic_operations",
+      "content": "Use add(a, b) for two-digit integer addition",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T05:36:41.696794+00:00",
+      "updated_at": "2025-11-28T05:36:41.696794+00:00"
+    },
+    "arithmetic_operations-00002": {
+      "id": "arithmetic_operations-00002",
+      "section": "arithmetic_operations",
+      "content": "Use multiply(a, b) for two-digit integer multiplication",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T05:37:03.076067+00:00",
+      "updated_at": "2025-11-28T05:37:03.076067+00:00"
+    },
+    "string_operations-00003": {
+      "id": "string_operations-00003",
+      "section": "string_operations",
+      "content": "Use get_word_length({'word': 'example'}) for single-word length queries",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T05:37:34.340934+00:00",
+      "updated_at": "2025-11-28T05:37:34.340934+00:00"
+    },
+    "response_generation-00004": {
+      "id": "response_generation-00004",
+      "section": "response_generation",
+      "content": "Format word length results as '\"The word \\\"X\\\" has N letters.\"'",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T05:37:34.340934+00:00",
+      "updated_at": "2025-11-28T05:37:34.340934+00:00"
+    },
+    "tool_execution-00005": {
+      "id": "tool_execution-00005",
+      "section": "tool_execution",
+      "content": "Direct tool invocation suffices for atomic string computations",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T05:37:34.340934+00:00",
+      "updated_at": "2025-11-28T05:37:34.340934+00:00"
+    }
+  },
+  "sections": {
+    "arithmetic_operations": [
+      "arithmetic_operations-00001",
+      "arithmetic_operations-00002"
+    ],
+    "string_operations": [
+      "string_operations-00003"
+    ],
+    "response_generation": [
+      "response_generation-00004"
+    ],
+    "tool_execution": [
+      "tool_execution-00005"
+    ]
+  },
+  "next_id": 5
+}

@@ -1,0 +1,31 @@
+{
+  "bullets": {
+    "factual_recall-00001": {
+      "id": "factual_recall-00001",
+      "section": "factual_recall",
+      "content": "Retrieve capital cities from internal knowledge when confidence is high",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-27T03:23:26.448995+00:00",
+      "updated_at": "2025-11-27T03:23:26.448995+00:00"
+    },
+    "factual_recall-00002": {
+      "id": "factual_recall-00002",
+      "section": "factual_recall",
+      "content": "Use internal knowledge for high-consensus historical facts with confidence tagging",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-27T03:29:51.125699+00:00",
+      "updated_at": "2025-11-27T03:30:15.143710+00:00"
+    }
+  },
+  "sections": {
+    "factual_recall": [
+      "factual_recall-00001",
+      "factual_recall-00002"
+    ]
+  },
+  "next_id": 2
+}

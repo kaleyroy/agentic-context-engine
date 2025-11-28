@@ -1,0 +1,44 @@
+{
+  "bullets": {
+    "arithmetic_operations-00001": {
+      "id": "arithmetic_operations-00001",
+      "section": "arithmetic_operations",
+      "content": "Add two-digit numbers by place value: sum tens, then units, then combine",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:20:31.944287+00:00",
+      "updated_at": "2025-11-28T02:20:31.944287+00:00"
+    },
+    "arithmetic_operations-00002": {
+      "id": "arithmetic_operations-00002",
+      "section": "arithmetic_operations",
+      "content": "Use direct computation for multiplication under 100",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:21:12.215842+00:00",
+      "updated_at": "2025-11-28T02:21:12.215842+00:00"
+    },
+    "linguistic_operations-00003": {
+      "id": "linguistic_operations-00003",
+      "section": "linguistic_operations",
+      "content": "Count characters directly for word length queries",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-11-28T02:21:33.481745+00:00",
+      "updated_at": "2025-11-28T02:21:33.481745+00:00"
+    }
+  },
+  "sections": {
+    "arithmetic_operations": [
+      "arithmetic_operations-00001",
+      "arithmetic_operations-00002"
+    ],
+    "linguistic_operations": [
+      "linguistic_operations-00003"
+    ]
+  },
+  "next_id": 3
+}
