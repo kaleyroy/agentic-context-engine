@@ -37,11 +37,10 @@ import logging
 import sys
 
 logging.basicConfig(
-    level=logging.DEBUG,
     format="[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
 )
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
-logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger().setLevel(logging.INFO)
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.tools import tool

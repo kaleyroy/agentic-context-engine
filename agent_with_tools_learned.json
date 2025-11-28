@@ -54,11 +54,11 @@
       "id": "knowledge_retrieval-00006",
       "section": "knowledge_retrieval",
       "content": "Use internal knowledge for established geopolitical facts",
-      "helpful": 1,
+      "helpful": 2,
       "harmful": 0,
       "neutral": 0,
       "created_at": "2025-11-28T06:14:29.320631+00:00",
-      "updated_at": "2025-11-28T06:14:29.320631+00:00"
+      "updated_at": "2025-11-28T06:24:11.851244+00:00"
     }
   },
   "sections": {

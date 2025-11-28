@@ -215,7 +215,11 @@ class ACELangChain:
                 tool_calls, tool_results = None, {}
                 while True:
                     current = messages[user_msg_idx]
-                    if current.type == "ai" and hasattr(current, "tool_calls") and len(current.tool_calls) > 0:
+                    if (
+                        current.type == "ai"
+                        and hasattr(current, "tool_calls")
+                        and len(current.tool_calls) > 0
+                    ):
                         tool_calls = current.tool_calls
                     if current.type == "tool":
                         tool_results[current.tool_call_id] = current.content
@@ -224,10 +228,8 @@ class ACELangChain:
                         break
                     user_msg_idx -= 1
 
-        
-                # print(f"Last user message: {messages[user_msg_idx]}")
-                intermediate_messages = messages[user_msg_idx : len(messages) - 1]
-                logger.debug(f"Intermediate messages: {intermediate_messages}")
+                intermediate_messages = messages[user_msg_idx : len(messages)]
+                logger.info(f"Intermediate messages: {intermediate_messages}")
                 tool_descriptions = []
                 if tool_calls and len(tool_calls) > 0:
                     for tool_call in tool_calls:
@@ -250,7 +252,7 @@ class ACELangChain:
 
         # Step 3: Learn from result
         if self.is_learning:
-            self._learn(input, result,intermediate_state)
+            self._learn(input, result, intermediate_state)
 
         return result
 
@@ -354,7 +356,11 @@ class ACELangChain:
             else:
                 task = str(original_input)
 
-            extra_state = f"Intermediate state: {intermediate_state}" if intermediate_state else ""
+            extra_state = (
+                f"Intermediate state: {intermediate_state}"
+                if intermediate_state
+                else ""
+            )
             # Create adapter for Reflector interface
             generator_output = GeneratorOutput(
                 reasoning=f"Task: {task}\n {extra_state} \nOutput: {output_str}",
