@@ -159,7 +159,7 @@ In this example:
 
 Try it yourself:
 ```bash
-uv run python examples/kayba_ace_test.py
+uv run python examples/litellm/seahorse_emoji_ace.py
 ```
 
 ### 🌐 Browser Automation
@@ -267,7 +267,7 @@ Automatically tracks: LLM calls, costs, playbook evolution. View at [comet.com/o
   - [Browser Automation](examples/browser-use/) - Self-improving browser agents
   - [LangChain Integration](examples/langchain/) - Wrap chains/agents with learning
   - [Custom Integration](examples/custom_integration_example.py) - Pattern for any agent
-  - [Async Learning Demo](examples/async_learning_demo.py) - Background learning example
+  - [Async Learning Demo](examples/litellm/async_learning_example.py) - Background learning example
 - [Integration Guide](docs/INTEGRATION_GUIDE.md) - Add ACE to existing agents
 - [ACE Framework Guide](docs/COMPLETE_GUIDE_TO_ACE.md) - Deep dive into Agentic Context Engineering
 - [Prompt Engineering](docs/PROMPT_ENGINEERING.md) - Advanced prompt techniques
