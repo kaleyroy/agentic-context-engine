@@ -1,0 +1,130 @@
+{
+  "model": "dashscope/qwen3-max",
+  "evaluation_mode": "offline_train_test_split",
+  "split_ratio": 0.8,
+  "train_samples": 4,
+  "test_samples": 1,
+  "epochs": 2,
+  "samples_evaluated": 9,
+  "results": [
+    {
+      "sample_id": "simpleai_train_0000",
+      "question": "同房要注意哪些卫生 男朋友来看我，晚上开了房间，就迫不及待的要吃我，叫他去洗澡都不肯，没办法我们就那样做了一次，之后我就感觉阴道疼的很，每天下体有黄色的东西排出来，气味很难闻。想得到怎样的帮助:同房要注意哪些卫生？",
+      "prediction": "no_applicable_strategies",
+      "ground_truth": "病情分析： 性生活前后男女双方都应该清洗外阴和外生殖器。女性外阴的清洗，除了清洗大小阴唇及其附近外，还应清洗肛门及周围，用晾凉后的开水或流动水冲洗即可。不要用肥皂冲洗或经常用洗液冲洗阴道，因为妇女的阴道本身有自洁作用，可保护自己不受细菌的干扰。洗外阴时手不应进到阴道，以免损伤阴道壁。",
+      "metrics": {
+        "similarity": 0.2518
+      },
+      "feedback": "Similarity 25.18% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0001",
+      "question": "小孩哮喘有什么症状？ 无",
+      "prediction": "no_applicable_strategies",
+      "ground_truth": "儿童受到变应原、冷空气或其他诱因的刺激时，往往首先表现为上呼吸道过敏的症状，如眼痒、鼻痒、打喷嚏、流清涕等，婴幼儿因不能诉说，仅可见揉鼻搓眼等表现，进一步表现为上腭痒、咽痒、干咳和呛咳。 2、突然发作的喘息为儿童哮喘的主要特征，儿童哮喘的喘息症状根据哮喘的严重程度而有较大的差异。患儿可出现高调喘鸣声，不用听诊器或相隔一定距离即可听到。呼吸频度加快、呼吸困难，婴幼儿可表现为张口呼吸、鼻翼扇动。 3、严重发作时可表现为烦躁不安、紫绀、面色苍白、出冷汗。查体可见三凹征、心率加快、双肺有哮鸣音。进一步加重可出现心力衰竭的表现如颈静脉怒张、浮肿、肺底中、小水泡音、肝脏肿大。",
+      "metrics": {
+        "similarity": 0.2189
+      },
+      "feedback": "Similarity 21.89% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0002",
+      "question": "急性甲亢与甲亢的区别 我同事的嫂子患有急性甲亢，20天左右就治好了，我想问一下，我患有甲亢，也能在这么短的时间里治愈吗？另外急性甲亢与甲亢有什么区别啊",
+      "prediction": "no_applicable_strategies",
+      "ground_truth": "病情分析：你好,你嫂子的情况应该是叫亚急性甲状腺炎,也可以引起T3T4,增高,但TSH是降低的,与病毒感染有关,一般经积极治疗一个月就好了,你的情况应该是自身免疫性的疾病,两者差别比较大,恢复起来要慢得多,需要长期吃药的.指导意见：你的情况应该是常说的甲亢,Graves病,是自身免疫性疾病,治疗起来要慢的多,而你说的急性甲亢只是与病毒感染有关的甲状腺炎,就像感冒了嗓子发炎一样,治疗起来就容易的多.",
+      "metrics": {
+        "similarity": 0.2847
+      },
+      "feedback": "Similarity 28.47% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0003",
+      "question": "我这是前列腺还是肾有问题 婚前有过性交,经常,婚后房事时一次也就1分钟,有时一下就射了,但阴茎到是很硬,勃起很好.如果是接着做二次的话时间稍长一些,但勃起不是很好,有些软.",
+      "prediction": "no_applicable_strategies",
+      "ground_truth": "您这种情况建议化验尿常规、前列腺液常规，考虑是泌尿系感染或者前列腺炎扥可能性比较大，多喝水，避免久坐。前列腺炎引起的原因很多如：包皮过长、手淫过频、致病菌感染的等，前列腺炎不及时治疗会导致性功能的改变，如性欲下降、勃起困难、勃而不坚、射精过快、不射精、射精无快感等，影响夫妻性生活的和谐，严重者危及婚姻的稳定。建议及时去正规医院检查确诊，才能对症治疗。",
+      "metrics": {
+        "similarity": 0.3434
+      },
+      "feedback": "Similarity 34.34% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0004",
+      "question": "同房要注意哪些卫生 男朋友来看我，晚上开了房间，就迫不及待的要吃我，叫他去洗澡都不肯，没办法我们就那样做了一次，之后我就感觉阴道疼的很，每天下体有黄色的东西排出来，气味很难闻。想得到怎样的帮助:同房要注意哪些卫生？",
+      "prediction": "同房前后应注意以下卫生事项：1. 双方都应在性行为前清洗外生殖器和肛周区域，建议使用凉开水清洗，避免使用刺激性洗液；2. 绝对不要进行阴道冲洗（douching），因为这会破坏阴道内正常的保护性菌群，增加感染风险；3. 性行为后也应尽快清洗外阴，保持清洁干燥；4. 如果出现阴道疼痛、黄色分泌物或异味，这可能是感染的迹象，应避免再次性行为并及时就医检查，而不是自行冲洗或用药。",
+      "ground_truth": "病情分析： 性生活前后男女双方都应该清洗外阴和外生殖器。女性外阴的清洗，除了清洗大小阴唇及其附近外，还应清洗肛门及周围，用晾凉后的开水或流动水冲洗即可。不要用肥皂冲洗或经常用洗液冲洗阴道，因为妇女的阴道本身有自洁作用，可保护自己不受细菌的干扰。洗外阴时手不应进到阴道，以免损伤阴道壁。",
+      "metrics": {
+        "similarity": 0.5332
+      },
+      "feedback": "Similarity 53.32% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0005",
+      "question": "小孩哮喘有什么症状？ 无",
+      "prediction": "小孩哮喘的症状包括：喘息（wheezing）、呼吸急促（tachypnea）、鼻翼扇动（nasal flaring）、过敏前驱症状（如眼睛或鼻子发痒），严重时可能出现发绀（cyanosis）。",
+      "ground_truth": "儿童受到变应原、冷空气或其他诱因的刺激时，往往首先表现为上呼吸道过敏的症状，如眼痒、鼻痒、打喷嚏、流清涕等，婴幼儿因不能诉说，仅可见揉鼻搓眼等表现，进一步表现为上腭痒、咽痒、干咳和呛咳。 2、突然发作的喘息为儿童哮喘的主要特征，儿童哮喘的喘息症状根据哮喘的严重程度而有较大的差异。患儿可出现高调喘鸣声，不用听诊器或相隔一定距离即可听到。呼吸频度加快、呼吸困难，婴幼儿可表现为张口呼吸、鼻翼扇动。 3、严重发作时可表现为烦躁不安、紫绀、面色苍白、出冷汗。查体可见三凹征、心率加快、双肺有哮鸣音。进一步加重可出现心力衰竭的表现如颈静脉怒张、浮肿、肺底中、小水泡音、肝脏肿大。",
+      "metrics": {
+        "similarity": 0.4029
+      },
+      "feedback": "Similarity 40.29% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0006",
+      "question": "急性甲亢与甲亢的区别 我同事的嫂子患有急性甲亢，20天左右就治好了，我想问一下，我患有甲亢，也能在这么短的时间里治愈吗？另外急性甲亢与甲亢有什么区别啊",
+      "prediction": "您同事的嫂子很可能患的是亚急性甲状腺炎（常被误称为“急性甲亢”），而非真正的甲亢（如Graves病）。亚急性甲状腺炎通常由病毒感染引起，导致甲状腺暂时性释放激素，症状可在数周内自行缓解，因此20天左右好转是可能的。而真正的甲亢（如Graves病）是自身免疫性疾病，属于慢性病，通常需要抗甲状腺药物治疗12–18个月，极少能在20天内治愈。两者的根本区别在于病因（炎症性 vs 自身免疫性）和预后（自限性 vs 慢性需长期管理）。建议您明确自己的甲亢类型，再评估治疗预期。",
+      "ground_truth": "病情分析：你好,你嫂子的情况应该是叫亚急性甲状腺炎,也可以引起T3T4,增高,但TSH是降低的,与病毒感染有关,一般经积极治疗一个月就好了,你的情况应该是自身免疫性的疾病,两者差别比较大,恢复起来要慢得多,需要长期吃药的.指导意见：你的情况应该是常说的甲亢,Graves病,是自身免疫性疾病,治疗起来要慢的多,而你说的急性甲亢只是与病毒感染有关的甲状腺炎,就像感冒了嗓子发炎一样,治疗起来就容易的多.",
+      "metrics": {
+        "similarity": 0.783
+      },
+      "feedback": "Similarity 78.30% -> aligned. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_train_0007",
+      "question": "我这是前列腺还是肾有问题 婚前有过性交,经常,婚后房事时一次也就1分钟,有时一下就射了,但阴茎到是很硬,勃起很好.如果是接着做二次的话时间稍长一些,但勃起不是很好,有些软.",
+      "prediction": "您的症状（首次房事很快射精、勃起良好，但二次勃起变软）更符合前列腺问题（如前列腺炎），而非肾脏疾病。建议进行尿液检查和前列腺液检查以明确诊断，同时注意多喝水、避免久坐。",
+      "ground_truth": "您这种情况建议化验尿常规、前列腺液常规，考虑是泌尿系感染或者前列腺炎扥可能性比较大，多喝水，避免久坐。前列腺炎引起的原因很多如：包皮过长、手淫过频、致病菌感染的等，前列腺炎不及时治疗会导致性功能的改变，如性欲下降、勃起困难、勃而不坚、射精过快、不射精、射精无快感等，影响夫妻性生活的和谐，严重者危及婚姻的稳定。建议及时去正规医院检查确诊，才能对症治疗。",
+      "metrics": {
+        "similarity": 0.3996
+      },
+      "feedback": "Similarity 39.96% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "train"
+    },
+    {
+      "sample_id": "simpleai_test_0000",
+      "question": "脑瘤这个病是怎么长出来的？ 我二十年前的时候出过车祸，然后得了脑震荡，不过治好了，但是这几天我自己觉着不对劲，就是头特别疼，而且是那种没任何理由的疼，我查了资料，恐怕是脑子里长了脑瘤。在乎怎样的帮助：脑瘤这个病是怎么长出的的？",
+      "prediction": "no_applicable_strategies",
+      "ground_truth": "脑瘤的原因：1、脑胚胎联盟生长发育异常。2、隔代遗传因素：近年来相信胶质瘤有隔代遗传逆反心理。3、化学因素：近年来相信致癌物甲基胆葱及甲基业硝脲或乙基亚硝脲口服或静注都可致脑胶质瘤;些病发的原因，国外一些学者用某些能在多种不同动物身上引致小本瘤，但在人身上没能证实。",
+      "metrics": {
+        "similarity": 0.1888
+      },
+      "feedback": "Similarity 18.88% -> divergent. If divergent, incorporate missing details from the reference answer.",
+      "split": "test"
+    }
+  ],
+  "train_summary": {
+    "similarity_mean": 0.40218750000000003,
+    "similarity_min": 0.2189,
+    "similarity_max": 0.783
+  },
+  "test_summary": {
+    "similarity_mean": 0.1888,
+    "similarity_min": 0.1888,
+    "similarity_max": 0.1888
+  },
+  "overfitting_gap": {
+    "similarity_mean": 0.21338750000000004,
+    "similarity_min": 0.030100000000000016,
+    "similarity_max": 0.5942000000000001
+  },
+  "summary": {
+    "similarity_mean": 0.1888,
+    "similarity_min": 0.1888,
+    "similarity_max": 0.1888
+  }
+}

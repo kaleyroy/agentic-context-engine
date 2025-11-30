@@ -279,7 +279,7 @@ class AdapterBase:
         parts = [
             f"question: {sample.question}",
             f"context: {sample.context}",
-            f"metadata: {json.dumps(sample.metadata)}",
+            f"metadata: {json.dumps(sample.metadata, ensure_ascii=False)}",
             f"feedback: {environment_result.feedback}",
             f"ground_truth: {environment_result.ground_truth}",
         ]

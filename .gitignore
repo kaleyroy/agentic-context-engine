@@ -102,3 +102,6 @@ huggingface_cache/
 
 # Sensitive/private data (NEVER commit!)
 .private/
+
+# Datasets
+datasets/chat-dataset-baseline/

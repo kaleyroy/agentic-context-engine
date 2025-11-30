@@ -1,0 +1,10 @@
+{
+  "model": "dashscope/qwen3-max",
+  "timestamp": "20251130_154548",
+  "samples_evaluated": 13,
+  "summary_metrics": {
+    "similarity_mean": 0.3351,
+    "similarity_min": 0.3351,
+    "similarity_max": 0.3351
+  }
+}
