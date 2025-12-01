@@ -10,6 +10,8 @@ from dataclasses import dataclass, asdict
 import requests
 
 from ace.roles import GeneratorOutput
+from benchmarks.base import BenchmarkConfig
+from benchmarks.manager import BenchmarkTaskManager
 
 # Add project root to path
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +39,7 @@ from ace import (
 from ace.integrations import ACELiteLLM
 from ace.llm_providers import LiteLLMClient
 from litellm import embedding
+from benchmarks.environments import GenericBenchmarkEnvironment
 
 import logging
 
@@ -172,7 +175,7 @@ def sentence_similarity(
 # Variables
 
 # LITELLM_MODEL = "dashscope/qwen-plus"
-LITELLM_MODEL="dashscope/qwen3-max"
+LITELLM_MODEL = "dashscope/qwen3-max"
 # LITELLM_MODEL = "deepseek/deepseek-chat"
 LITELLM_MAX_TOKENS = 2048
 EMBEDDING_MODEL = "openai/Qwen3-Embedding-8B"
@@ -253,15 +256,19 @@ def run_evaluation(
     ace_domain: str | None = None,
     skip_adaptation: bool = False,
     split_ratio: float = 0.8,
-    epochs: int = 3,
+    epochs: int = 1,
     refinement_rounds: int = 3,
 ) -> Dict[str, Any]:
     """Run benchmark evaluation with ACE using proper train/test split."""
 
     # Create LLM client and ACE components with appropriate prompts
-    # client = create_llm_client(model=ace_model)
-    # generator, reflector, curator = create_ace_components(client, domain=ace_domain)
+    client = create_llm_client(model=ace_model)
+    generator, reflector, curator = create_ace_components(client, domain=ace_domain)
+
     environment = SimpleAIEnvironment(SIMILARITY_THRESHOLD)
+    # manager = BenchmarkTaskManager()
+    # config = manager.get_config("simple_qa")
+    # environment = GenericBenchmarkEnvironment(config)
 
     logger.info(f"Input samples: {len(samples)}, ACE model: {ace_model}")
 
@@ -598,6 +605,6 @@ if __name__ == "__main__":
     # print(f"Using model: {model},results: {results}")
 
     # Run evaluation
-    samples = list(generate_samples("medicine", 5))
+    samples = list(generate_samples("medicine", 10))
     evaluation_results = run_evaluation(samples, ace_model=LITELLM_MODEL, ace_domain="")
     save_results(evaluation_results)
