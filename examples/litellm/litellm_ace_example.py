@@ -43,11 +43,11 @@ def main():
     print("=" * 60)
 
     # Check for API key
-    if not os.getenv("OPENAI_API_KEY"):
-        print("ERROR: Please set OPENAI_API_KEY environment variable")
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        print("ERROR: Please set ANTHROPIC_API_KEY environment variable")
         print("\nSetup instructions:")
-        print("1. Get an API key from https://platform.openai.com/api-keys")
-        print("2. export OPENAI_API_KEY='your-api-key'")
+        print("1. Get an API key from https://console.anthropic.com/")
+        print("2. export ANTHROPIC_API_KEY='your-api-key'")
         print("3. Run this script again")
         return
 
@@ -59,7 +59,7 @@ def main():
     # Create ACELiteLLM agent
     # Note: Change model for different providers (see docstring for examples)
     agent = ACELiteLLM(
-        model="gpt-4o-mini",  # Fast, cost-effective OpenAI model
+        model="claude-sonnet-4-5-20250929",  # Claude Sonnet 4.5
         max_tokens=512,  # Reasonable limit for simple Q&A
         temperature=0.2,  # Low temperature for consistent learning
         playbook_path=str(playbook_path) if playbook_path.exists() else None,

@@ -41,8 +41,8 @@ class LiteLLMConfig:
     api_base: Optional[str] = None
     api_version: Optional[str] = None
     temperature: float = 0.0
-    max_tokens: int = 512
-    top_p: float = 0.9
+    max_tokens: int = 2048
+    top_p: Optional[float] = None
     timeout: int = 60
     max_retries: int = 3
     fallbacks: Optional[List[str]] = None
@@ -112,7 +112,7 @@ class LiteLLMClient(LLMClient):
         api_key: Optional[str] = None,
         api_base: Optional[str] = None,
         temperature: float = 0.0,
-        max_tokens: int = 512,
+        max_tokens: int = 2048,
         fallbacks: Optional[List[str]] = None,
         sampling_priority: str = "temperature",
         config: Optional[LiteLLMConfig] = None,
@@ -240,11 +240,19 @@ class LiteLLMClient(LLMClient):
 
     def _setup_opik_integration(self) -> None:
         """Set up Opik integration for automatic token and cost tracking."""
-        # Check if explicitly disabled
-        if os.environ.get("OPIK_DISABLED", "").lower() in ("true", "1", "yes"):
-            logger.debug(
-                "Opik integration disabled via OPIK_DISABLED environment variable"
-            )
+        # Check if explicitly disabled (support both patterns)
+        disabled_check = os.environ.get("OPIK_DISABLED", "").lower() in (
+            "true",
+            "1",
+            "yes",
+        )
+        enabled_check = os.environ.get("OPIK_ENABLED", "").lower() in (
+            "false",
+            "0",
+            "no",
+        )
+        if disabled_check or enabled_check:
+            logger.debug("Opik integration disabled via environment variable")
             return
 
         try:

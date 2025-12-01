@@ -40,7 +40,7 @@ def main():
     console.print(
         "[bold cyan]🌊 The Kayba Test - ACE Self-Learning Demo 🌊[/bold cyan]"
     )
-    console.print("[dim]Using Claude Opus 4.1[/dim]")
+    console.print("[dim]Using Claude Sonnet 4.5[/dim]")
     console.print("=" * 60 + "\n")
 
     # Configure Opik observability
@@ -53,9 +53,9 @@ def main():
         console.print("[dim]View traces at: https://www.comet.com/[/dim]")
     console.print()
 
-    # Setup - Claude Opus 4.1 via ACELiteLLM
+    # Setup - Claude Sonnet 4.5 via ACELiteLLM
     agent = ACELiteLLM(
-        model="claude-opus-4-1-20250805",
+        model="claude-sonnet-4-5-20250929",
         temperature=0.7,
         max_tokens=4000,
         is_learning=True,

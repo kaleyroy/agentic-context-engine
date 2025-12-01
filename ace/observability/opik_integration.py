@@ -50,8 +50,19 @@ logger = logging.getLogger(__name__)
 
 
 def _should_skip_opik() -> bool:
-    """Check if Opik should be disabled via environment variable."""
-    return os.environ.get("OPIK_DISABLED", "").lower() in ("true", "1", "yes")
+    """Check if Opik should be disabled via environment variable.
+
+    Supports both patterns:
+    - OPIK_DISABLED=true/1/yes (disable pattern)
+    - OPIK_ENABLED=false/0/no (enable pattern)
+    """
+    # Check disable pattern: OPIK_DISABLED=true/1/yes
+    if os.environ.get("OPIK_DISABLED", "").lower() in ("true", "1", "yes"):
+        return True
+    # Check enable pattern: OPIK_ENABLED=false/0/no
+    if os.environ.get("OPIK_ENABLED", "").lower() in ("false", "0", "no"):
+        return True
+    return False
 
 
 class OpikIntegration:
@@ -78,7 +89,8 @@ class OpikIntegration:
         """
         self.project_name = project_name
         self.tags = tags or ["ace-framework"]
-        self.enabled = OPIK_AVAILABLE
+        # Check both OPIK_AVAILABLE and env var before enabling
+        self.enabled = OPIK_AVAILABLE and not _should_skip_opik()
 
         if self.enabled and enable_auto_config:
             try:
@@ -362,7 +374,9 @@ def configure_opik(
     global _global_integration
     if _should_skip_opik():
         # Return disabled integration when OPIK_DISABLED is set
-        logger.debug("Opik configuration skipped via OPIK_DISABLED environment variable")
+        logger.debug(
+            "Opik configuration skipped via OPIK_DISABLED environment variable"
+        )
         _global_integration = OpikIntegration(enable_auto_config=False)
         _global_integration.enabled = False
     else:
