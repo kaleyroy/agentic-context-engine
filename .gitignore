@@ -105,3 +105,6 @@ huggingface_cache/
 
 # Datasets
 datasets/chat-dataset-baseline/
+
+# Vectorstore
+chroma_db/
