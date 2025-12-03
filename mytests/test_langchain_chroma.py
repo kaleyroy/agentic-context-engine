@@ -123,7 +123,7 @@ def init_k2_doc_vectorstore(collection_name: str = "k2docs", drop_first: bool = 
                 "label": item["label"],
                 "title": item["title"],
                 "id": item["id"],
-                "content": item["content"]
+                "content": item["content"],
             },
         )
         for item in items
@@ -150,8 +150,101 @@ def k2_doc_vectorstore_similarity_search(
     logger.info(f"Fetched {len(results)} results for `{user_query}`")
     if score_threshold:
         results = [res for res, score in results if score >= score_threshold]
-    logger.info(f"Filtered {len(results)} results for `{user_query}`")
+        logger.info(f"Filtered {len(results)} results for `{user_query}`")
+
     return results
+
+
+def build_k2qa_doc_samples():
+    file_path = ROOT / "datasets" / "k2docs.json"
+    with open(file_path, "r", encoding="utf-8") as f:
+        items = json.load(f)
+
+    logger.info(f"Loaded {len(items)} items from {Path(file_path).name}")
+    samples = []
+    logger.info(f"Building samples for {len(items)} items")
+    for item in items:
+        content = item["content"]
+        title = item["title"]
+        pos = content.rfind(f"{title}？") or content.rfind(f"{title}?")
+        final_asnwer = content[pos + len(title) + 1 :]
+        question_str = content[: pos + len(title) + 1]
+        questions = (
+            question_str.split("？")
+            if "？" in question_str
+            else question_str.split("?")
+        )
+        for question in questions:
+            if len(question.strip()) == 0 or len(final_asnwer.strip()) == 0:
+                continue
+
+            samples.append(
+                {
+                    "question": question.strip() + "？",
+                    "answer": final_asnwer.strip(),
+                    "docid": item["id"],
+                }
+            )
+
+    # Write to k2qa_samples.json
+    logger.info(f"Writing {len(samples)} samples to k2qa_samples.json")
+    with open(ROOT / "datasets" / "k2qa_samples.json", "w", encoding="utf-8") as f:
+        json.dump(samples, f, ensure_ascii=False, indent=2)
+    return samples
+
+
+def random_k2qa_samples(count: int = 10):
+    """Get random k2qa samples from k2qa_samples.json with unique docid"""
+    import random
+
+    with open(ROOT / "datasets" / "k2qa_samples.json", "r", encoding="utf-8") as f:
+        samples = json.load(f)
+    sample_results = {}
+    logger.info(f"Loaded {len(samples)} samples from k2qa_samples.json")
+    if count > len(samples):
+        count = len(samples)
+    while True:
+        if len(sample_results) >= count:
+            break
+        random_samples = random.sample(samples, count)
+        # deduplicates by docid
+        for sample in random_samples:
+            if len(sample_results) >= count:
+                break
+            if sample["docid"] not in sample_results:
+                sample_results[sample["docid"]] = sample
+
+    # Write to k2qa_rand_samples.json
+    logger.info(f"Writing {len(sample_results)} samples to k2qa_rand_samples.json")
+    with open(ROOT / "datasets" / "k2qa_rand_samples.json", "w", encoding="utf-8") as f:
+        json.dump(list(sample_results.values()), f, ensure_ascii=False, indent=2)
+
+
+def build_k2qa_ctxt_samples(k: int = 3):
+    """Build k2qa context samples from k2qa_rand_samples.json"""
+    with open(ROOT / "datasets" / "k2qa_rand_samples.json", "r", encoding="utf-8") as f:
+        samples = json.load(f)
+    logger.info(f"Loaded {len(samples)} samples from k2qa_rand_samples.json")
+    # Build context samples
+    context_samples = []
+    for sample in samples:
+        question = sample["question"]
+        logger.info(f"Getting context for `{question}` in vectorstore")
+        results = k2_doc_vectorstore_similarity_search(question, k=k)
+        logger.info(f"Fetched {len(results)} results for `{question}`")
+        context_samples.append(
+            {
+                "docid": sample["docid"],
+                "question": question,
+                "answer": sample["answer"],
+                "context": [res.page_content for res, _ in results],
+                "context_ids": [res.metadata["id"] for res, _ in results],
+            }
+        )
+    # Write to k2qa_ctxt_samples.json
+    logger.info(f"Writing {len(context_samples)} samples to k2qa_ctxt_samples.json")
+    with open(ROOT / "datasets" / "k2qa_ctxt_samples.json", "w", encoding="utf-8") as f:
+        json.dump(context_samples, f, ensure_ascii=False, indent=2)
 
 
 if __name__ == "__main__":
@@ -169,6 +262,13 @@ if __name__ == "__main__":
     # K2DOCS VectorStore
     # ----------------------------------------
     # vector_store = init_k2_doc_vectorstore(drop_first=True)
-    results = k2_doc_vectorstore_similarity_search("审批按钮解释？", k=5)
-    for res, score in results:
-        print(f"* [SIM={score:3f}] {res.page_content} ")
+    # results = k2_doc_vectorstore_similarity_search("审批按钮解释？", k=5)
+    # for res, score in results:
+    #     print(f"* [SIM={score:3f}] {res.page_content} ")
+
+    # ----------------------------------------
+    # K2QA Samples
+    # ----------------------------------------
+    # build_k2qa_doc_samples()
+    # random_k2qa_samples(count=25)
+    build_k2qa_ctxt_samples(k=3)

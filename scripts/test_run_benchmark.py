@@ -180,7 +180,13 @@ def load_benchmark_data(
 
     # Load raw data
     try:
-        raw_data = list(manager.load_benchmark_data(args.benchmark))
+        root = Path(__file__).parents[1]
+        if args.benchmark == "simple_k2qa":
+            data_path = root / "datasets" / "k2qa_ctxt_samples.json"
+            with open(data_path, "r", encoding="utf-8") as f:
+                raw_data = json.load(f)
+        else:
+            raw_data = list(manager.load_benchmark_data(args.benchmark))
     except Exception as e:
         print(f"Error loading benchmark data: {e}")
         sys.exit(1)
@@ -284,6 +290,13 @@ Answer with just the letter (A, B, C, or D)."""
             ground_truth = answer_map.get(data["answer"], "A")
 
             sample = Sample(question=question, ground_truth=ground_truth)
+        elif args.benchmark == "simple_k2qa":
+            contexts = list(map(lambda text: f"- {text}", data.get("context", [])))
+            sample = Sample(
+                question=data["question"],
+                ground_truth=data["answer"],
+                context="\n\n"+"".join(contexts),
+            )
         else:
             # Generic handling - check if already processed
             if "question" in data:
@@ -306,6 +319,7 @@ Answer with just the letter (A, B, C, or D)."""
     # Write samples to file for debugging
     with open(f"{args.benchmark}_samples.json", "w", encoding="utf-8") as f:
         from dataclasses import asdict
+
         data = [asdict(sample) for sample in samples]
         json.dump(data, f, ensure_ascii=False, indent=4)
     return samples
@@ -394,8 +408,9 @@ def run_comparison_mode(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    model_name = args.model.replace("/", "_")
     comparison_file = (
-        output_dir / f"comparison_{args.benchmark}_{args.model}_{timestamp}.json"
+        output_dir / f"comparison_{args.benchmark}_{model_name}_{timestamp}.json"
     )
 
     comparison_data = {
@@ -482,7 +497,12 @@ def run_evaluation(
     # Create LLM client and ACE components with appropriate prompts
     client = create_llm_client(args)
     generator, reflector, curator = create_ace_components(client, args.prompt_version)
-    environment = manager.get_benchmark(args.benchmark)
+    if args.benchmark == "simple_k2qa":
+        from test_extended_funcs import SimpleK2QAEnvironment
+        environment = SimpleK2QAEnvironment()
+    else:
+        environment = manager.get_benchmark(args.benchmark)
+   
 
     results = []
     train_results = []

@@ -1,8 +1,8 @@
-task: simple_ai
+task: simple_k2qa
 version: 1.0
 data:
   source: huggingface
-  dataset_path: Hello-SimpleAI/HC3-Chinese
+  dataset_path: datasets\k2qa_ctxt_samples.json
   split: train
   limit: 200
 preprocessing:
@@ -18,7 +18,7 @@ metrics:
   - name: accuracy
     weight: 0.6
 metadata:
-  description: "Hello-SimpleAI/HC3-Chinese Question Answering - basic QA for testing ACE framework"
+  description: "K2 Question Answering - basic QA for testing ACE framework"
   domain: general
   task_type: qa
   evaluation_type: text_match
