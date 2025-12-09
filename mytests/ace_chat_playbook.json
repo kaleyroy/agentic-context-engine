@@ -1,0 +1,94 @@
+{
+  "bullets": {
+    "permission_troubleshooting-00001": {
+      "id": "permission_troubleshooting-00001",
+      "section": "permission_troubleshooting",
+      "content": "Analyze K2 access issues using participation, permissions, and document state",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-04T08:57:34.216795+00:00",
+      "updated_at": "2025-12-04T08:57:34.216795+00:00",
+      "embedding": null,
+      "status": "active"
+    },
+    "role_clarity-00002": {
+      "id": "role_clarity-00002",
+      "section": "role_clarity",
+      "content": "Define 'initiator' as the K2 account, not business process owner",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-04T08:57:34.216795+00:00",
+      "updated_at": "2025-12-04T08:57:34.216795+00:00",
+      "embedding": null,
+      "status": "active"
+    },
+    "self_service_support-00003": {
+      "id": "self_service_support-00003",
+      "section": "self_service_support",
+      "content": "Instruct users to enable 'Archived' filter for missing documents",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-04T08:57:34.216795+00:00",
+      "updated_at": "2025-12-04T08:57:34.216795+00:00",
+      "embedding": null,
+      "status": "active"
+    },
+    "classical_poetry_generation-00004": {
+      "id": "classical_poetry_generation-00004",
+      "section": "classical_poetry_generation",
+      "content": "Perform metapoetic verification before delivering classical poems",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-04T08:59:15.588210+00:00",
+      "updated_at": "2025-12-04T08:59:15.588210+00:00",
+      "embedding": null,
+      "status": "active"
+    },
+    "classical_poetry_generation-00005": {
+      "id": "classical_poetry_generation-00005",
+      "section": "classical_poetry_generation",
+      "content": "Use 'eastern fence chrysanthemum' allusion to convey resilience in autumn poems",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-04T08:59:15.588210+00:00",
+      "updated_at": "2025-12-04T08:59:15.588210+00:00",
+      "embedding": null,
+      "status": "active"
+    },
+    "classical_poetry_generation-00006": {
+      "id": "classical_poetry_generation-00006",
+      "section": "classical_poetry_generation",
+      "content": "Pair visual and auditory imagery to strengthen seasonal depiction",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-04T08:59:15.588210+00:00",
+      "updated_at": "2025-12-04T08:59:15.588210+00:00",
+      "embedding": null,
+      "status": "active"
+    }
+  },
+  "sections": {
+    "permission_troubleshooting": [
+      "permission_troubleshooting-00001"
+    ],
+    "role_clarity": [
+      "role_clarity-00002"
+    ],
+    "self_service_support": [
+      "self_service_support-00003"
+    ],
+    "classical_poetry_generation": [
+      "classical_poetry_generation-00004",
+      "classical_poetry_generation-00005",
+      "classical_poetry_generation-00006"
+    ]
+  },
+  "next_id": 6,
+  "similarity_decisions": {}
+}

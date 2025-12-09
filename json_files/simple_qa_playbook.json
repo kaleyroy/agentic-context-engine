@@ -1,0 +1,86 @@
+{
+  "bullets": {
+    "extractive_fidelity": {
+      "id": "extractive_fidelity",
+      "section": "Extractive Reasoning",
+      "content": "When the provided context explicitly states the answer, extract only the components that match the expected answer's format and granularity—avoid including additional correct but extraneous details not present in the ground truth.",
+      "helpful": 7,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:41:43.600824+00:00",
+      "updated_at": "2025-12-01T02:47:41.189252+00:00"
+    },
+    "extractive-00001": {
+      "id": "extractive-00001",
+      "section": "Extractive Reasoning",
+      "content": "When the context explicitly names a theme, title, or official phrase (e.g., 'golden anniversary'), reproduce it verbatim rather than paraphrasing, abbreviating, or extracting only keywords—even if the shortened form is semantically accurate.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:43:16.671499+00:00",
+      "updated_at": "2025-12-01T02:46:05.651628+00:00"
+    },
+    "extractive-00002": {
+      "id": "extractive-00002",
+      "section": "Extractive Reasoning",
+      "content": "In extractive QA tasks requiring exact match scoring, replicate the ground truth string precisely—including quotation marks, punctuation, spacing, and casing—even if these elements are not present in the source context but appear in the expected answer.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:44:17.031595+00:00",
+      "updated_at": "2025-12-01T02:44:17.031595+00:00"
+    },
+    "extractive-00003": {
+      "id": "extractive-00003",
+      "section": "Extractive Reasoning",
+      "content": "When an acronym is explicitly defined in the context (e.g., 'AFC' as 'American Football Conference'), extract the full expansion verbatim without paraphrasing, abbreviating, or inferring alternative forms.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:44:37.973498+00:00",
+      "updated_at": "2025-12-01T02:44:37.973498+00:00"
+    },
+    "extract-literal-city": {
+      "id": "extract-literal-city",
+      "section": "Extractive Reasoning",
+      "content": "When the context explicitly states a specific location (e.g., a city) within a broader region, extract the specific location verbatim and avoid substituting or generalizing to the broader region—even if the region is more commonly associated with the event.",
+      "helpful": 3,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:45:53.161386+00:00",
+      "updated_at": "2025-12-01T02:47:07.831790+00:00"
+    },
+    "format-normalization": {
+      "id": "format-normalization",
+      "section": "Extractive Reasoning",
+      "content": "When the ground truth expects a normalized value (e.g., a year alone), extract only the core factual component and omit contextually accurate but format-incompatible qualifiers (such as 'season', 'year', or 'edition') unless explicitly required by the expected answer.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:46:30.013512+00:00",
+      "updated_at": "2025-12-01T02:46:30.013512+00:00"
+    },
+    "sports-season-year-priority": {
+      "id": "sports-season-year-priority",
+      "section": "Extractive Reasoning",
+      "content": "In time-sensitive factual questions involving sports or fiscal years, prioritize the official season year over the calendar date of the culminating event unless explicitly instructed otherwise.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2025-12-01T02:46:49.829596+00:00",
+      "updated_at": "2025-12-01T02:46:49.829596+00:00"
+    }
+  },
+  "sections": {
+    "Extractive Reasoning": [
+      "extractive_fidelity",
+      "extractive-00001",
+      "extractive-00002",
+      "extractive-00003",
+      "extract-literal-city",
+      "format-normalization",
+      "sports-season-year-priority"
+    ]
+  },
+  "next_id": 1
+}
