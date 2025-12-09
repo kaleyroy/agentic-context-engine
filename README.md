@@ -54,11 +54,16 @@ print(answer)  # "ACE allows AI agents to remember and learn from experience!"
 
 ## 🎯 Integrations
 
-ACE provides three ready-to-use integrations:
+ACE provides four ready-to-use integrations:
 
-### **ACELiteLLM** - Simplest Start 🚀
+**[→ Integration Guide](docs/INTEGRATION_GUIDE.md)** | **[→ Examples](examples/)**
 
-Perfect for Q&A, classification, reasoning:
+### 1. **ACELiteLLM** - Simplest Start 🚀
+
+Create your self-improving agent:
+
+<details>
+<summary>Click to view code example</summary>
 
 ```python
 from ace import ACELiteLLM
@@ -72,18 +77,46 @@ answer2 = agent.ask("If all birds fly, can penguins (birds) fly?")  # Learns to 
 answer3 = agent.ask("If all metals conduct electricity, does copper conduct electricity?")
 
 # View learned strategies
-print(f"✅ Learned {len(agent.playbook.bullets())} reasoning strategies")
+print(f"✅ Learned {len(agent.skillbook.skills())} reasoning skills")
 
 # Save for reuse
-agent.save_playbook("my_agent.json")
+agent.save_skillbook("my_agent.json")
 
 # Load and continue
-agent2 = ACELiteLLM.from_playbook("my_agent.json", model="gpt-4o-mini")
+agent2 = ACELiteLLM.from_skillbook("my_agent.json", model="gpt-4o-mini")
 ```
 
-### **ACEAgent (browser-use)** - Browser Automation 🌐
+</details>
+<br>
+
+### 2. **ACELangChain** - Wrap ACE Around Your Existing Agent ⛓️
+
+Wrap any LangChain chain/agent with learning:
+
+**Best for:** Multi-step workflows, tool-using agents
+
+<details>
+<summary>Click to view code example</summary>
+
+```python
+from ace import ACELangChain
+
+ace_chain = ACELangChain(runnable=your_langchain_chain)
+result = ace_chain.invoke({"question": "Your task"})  # Learns automatically
+```
+
+</details>
+<br>
+
+### 3. **ACEAgent** - Enhance Browser-Use Agent with Self-Optimizing 🌐
 
 Self-improving browser agents with [browser-use](https://github.com/browser-use/browser-use):
+
+**Features:** Drop-in replacement for `browser_use.Agent`, automatic learning, reusable skillbooks
+**[→ Browser Use Guide](examples/browser-use/README.md)**
+
+<details>
+<summary>Click to view code example</summary>
 
 ```bash
 pip install ace-framework[browser-use]
@@ -100,30 +133,43 @@ agent = ACEAgent(
 )
 
 await agent.run(task="Find top Hacker News post")
-agent.save_playbook("hn_expert.json")
+agent.save_skillbook("hn_expert.json")
 
 # Reuse learned knowledge
-agent = ACEAgent(llm=ChatBrowserUse(), playbook_path="hn_expert.json")
+agent = ACEAgent(llm=ChatBrowserUse(), skillbook_path="hn_expert.json")
 await agent.run(task="New task")  # Starts smart!
 ```
 
-**Features:** Drop-in replacement for `browser_use.Agent`, automatic learning, reusable playbooks
-**[→ Browser Use Guide](examples/browser-use/README.md)**
+</details>
+<br>
 
-### **ACELangChain** - Complex Workflows ⛓️
+### 4. **ACEClaudeCode** - Claude Code CLI 💻
 
-Wrap any LangChain chain/agent with learning:
+Self-improving coding agent using [Claude Code](https://claude.ai/code):
+
+**Features:** Claude Code CLI wrapper, automatic learning, task execution traces
+**[→ Claude Code Loop Example](examples/claude-code-loop/)**
+
+<details>
+<summary>Click to view code example</summary>
 
 ```python
-from ace import ACELangChain
+from ace import ACEClaudeCode
 
-ace_chain = ACELangChain(runnable=your_langchain_chain)
-result = ace_chain.invoke({"question": "Your task"})  # Learns automatically
+agent = ACEClaudeCode(
+    working_dir="./my_project",
+    ace_model="gpt-4o-mini"
+)
+
+# Execute coding tasks - agent learns from each
+result = agent.run(task="Add unit tests for utils.py")
+agent.save_skillbook("coding_expert.json")
+
+# Reuse learned knowledge
+agent = ACEClaudeCode(working_dir="./project", skillbook_path="coding_expert.json")
 ```
 
-**Best for:** Multi-step workflows, tool-using agents
-
-**[→ Integration Guide](docs/INTEGRATION_GUIDE.md)** | **[→ Examples](examples/)**
+</details>
 
 ---
 
@@ -134,13 +180,16 @@ AI agents make the same mistakes repeatedly.
 ACE enables agents to learn from execution feedback: what works, what doesn't, and continuously improve. <br> No training data, no fine-tuning, just automatic improvement.
 
 ### Clear Benefits
+- 🧠 **Self-Improving**: Agents autonomously get smarter with each task
 - 📈 **20-35% Better Performance**: Proven improvements on complex tasks
-- 🧠 **Self-Improving**: Agents get smarter with each task
+- 📉 **Reduce Token Usage**: Demonstrated 49% reduction in browser-use example
+
+### Features
 - 🔄 **No Context Collapse**: Preserves valuable knowledge over time
-- ⚡ **Async Learning**: Generator responds instantly while learning happens in background
+- ⚡ **Async Learning**: Agent responds instantly while learning happens in background
 - 🚀 **100+ LLM Providers**: Works with OpenAI, Anthropic, Google, and more
 - 📊 **Production Observability**: Built-in Opik integration for enterprise monitoring
-- 🔄 **Smart Deduplication**: Automatically consolidates similar strategies
+- 🔄 **Smart Deduplication**: Automatically consolidates similar skills
 
 ---
 
@@ -155,7 +204,7 @@ A challenge where LLMs often hallucinate that a seahorse emoji exists (it doesn'
 In this example:
 - **Round 1**: The agent incorrectly outputs 🐴 (horse emoji)
 - **Self-Reflection**: ACE reflects without any external feedback
-- **Round 2**: With learned strategies from ACE, the agent successfully realizes there is no seahorse emoji
+- **Round 2**: With learned skills from ACE, the agent successfully realizes there is no seahorse emoji
 
 Try it yourself:
 ```bash
@@ -175,6 +224,22 @@ uv run python examples/litellm/seahorse_emoji_ace.py
 
 **[→ Try it yourself & see all demos](examples/browser-use/README.md)**
 
+### 💻 Claude Code Loop
+
+Continuous autonomous coding: Claude Code runs a task, ACE learns from execution, skills get injected into the next iteration.
+
+**Python → TypeScript Translation:**
+
+| Metric           | Result                               |
+| ---------------- | ------------------------------------ |
+| ⏱️ Duration      | ~4 hours                             |
+| 📝 Commits       | 119                                  |
+| 📏 Lines written | ~14k                                 |
+| ✅ Outcome       | Zero build errors, all tests passing |
+| 💰 API cost      | ~$1.5 (Sonnet for learning)          |
+
+**[→ Try it yourself](examples/claude-code-loop/)**
+
 ---
 
 ## How does Agentic Context Engine (ACE) work?
@@ -182,9 +247,9 @@ uv run python examples/litellm/seahorse_emoji_ace.py
 *Based on the [ACE research framework](https://arxiv.org/abs/2510.04618) from Stanford & SambaNova.*
 
 ACE uses three specialized roles that work together:
-1. **🎯 Generator** - Creates strategies using learned patterns from the playbook
+1. **🎯 Agent** - Creates a plan using learned skills and executes the task
 2. **🔍 Reflector** - Analyzes what worked and what didn't after execution
-3. **📝 Curator** - Updates the playbook with new strategies based on reflection
+3. **📝 SkillManager** - Updates the skillbook with new skills based on reflection
 
 **Important:** The three ACE roles are different specialized prompts using the same language model, not separate models.
 
@@ -194,7 +259,7 @@ ACE teaches your agent and internalises:
 - **🔧 Tool usage** → Discover which tools work best for which tasks
 - **🎯 Edge cases** → Remember rare scenarios and how to handle them
 
-The magic happens in the **Playbook**—a living document of strategies that evolves with experience. <br>
+The magic happens in the **Skillbook**—a living document of skills that evolves with experience. <br>
 **Key innovation:** All learning happens **in context** through incremental updates—no fine-tuning, no training data, and complete transparency into what your agent learned.
 
 ```mermaid
@@ -204,16 +269,16 @@ config:
   theme: neutral
 ---
 flowchart LR
-    Playbook[("`**📚 Playbook**<br>(Evolving Context)<br><br>•Strategy Bullets<br> ✓ Helpful strategies <br>✗ Harmful patterns <br>○ Neutral observations`")]
-    Start(["**📝Query** <br>User prompt or question"]) --> Generator["**⚙️Generator** <br>Executes task using playbook"]
-    Generator --> Reflector
-    Playbook -. Provides Context .-> Generator
+    Skillbook[("`**📚 Skillbook**<br>(Evolving Context)<br><br>•Strategy Skills<br> ✓ Helpful skills <br>✗ Harmful patterns <br>○ Neutral observations`")]
+    Start(["**📝Query** <br>User prompt or question"]) --> Agent["**⚙️Agent** <br>Executes task using skillbook"]
+    Agent --> Reflector
+    Skillbook -. Provides Context .-> Agent
     Environment["**🌍 Task Environment**<br>Evaluates answer<br>Provides feedback"] -- Feedback+ <br>Optional Ground Truth --> Reflector
     Reflector["**🔍 Reflector**<br>Analyzes and provides feedback what was helpful/harmful"]
-    Reflector --> Curator["**📝 Curator**<br>Produces improvement deltas"]
-    Curator --> DeltaOps["**🔀Merger** <br>Updates the playbook with deltas"]
-    DeltaOps -- Incremental<br>Updates --> Playbook
-    Generator <--> Environment
+    Reflector --> SkillManager["**📝 SkillManager**<br>Produces improvement updates"]
+    SkillManager --> UpdateOps["**🔀Merger** <br>Updates the skillbook with updates"]
+    UpdateOps -- Incremental<br>Updates --> Skillbook
+    Agent <--> Environment
 ```
 
 ---
@@ -255,7 +320,7 @@ pip install ace-framework[observability]
 export OPIK_API_KEY="your-api-key"
 ```
 
-Automatically tracks: LLM calls, costs, playbook evolution. View at [comet.com/opik](https://www.comet.com/opik)
+Automatically tracks: LLM calls, costs, skillbook evolution. View at [comet.com/opik](https://www.comet.com/opik)
 
 ---
 
