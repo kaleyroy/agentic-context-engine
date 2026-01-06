@@ -147,7 +147,7 @@ Answer: 8
 from ace import ACELiteLLM
 
 # Load previously trained agent
-agent = ACELiteLLM.from_skillbook("my_agent.json", model="gpt-4o-mini")
+agent = ACELiteLLM(model="gpt-4o-mini", skillbook_path="my_agent.json")
 
 # Use it immediately
 answer = agent.ask("New question")
@@ -216,7 +216,12 @@ See [Integration Guide](INTEGRATION_GUIDE.md) for details.
 ```python
 from ace import OnlineACE
 
-adapter = OnlineACE(skillbook, agent, reflector, skill_manager)
+adapter = OnlineACE(
+    skillbook=skillbook,
+    agent=agent,
+    reflector=reflector,
+    skill_manager=skill_manager
+)
 
 # Process tasks one by one, learning from each
 for task in tasks:
